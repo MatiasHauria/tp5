@@ -26,17 +26,83 @@ public class TrabajoPractico5 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuClient = new javax.swing.JMenu();
+        menuAgregarCliente = new javax.swing.JMenuItem();
+        menuBuscarCliente = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuClienteCiudad = new javax.swing.JMenuItem();
+        menuTelefonoApellido = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        menuCiudad = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+
+        menuClient.setText("Clientes");
+
+        menuAgregarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuAgregarCliente.setText("Agregar Cliente");
+        menuClient.add(menuAgregarCliente);
+
+        menuBuscarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuBuscarCliente.setText("Buscar Cliente");
+        menuClient.add(menuBuscarCliente);
+
+        jMenuBar1.add(menuClient);
+
+        jMenu2.setText("Directorio");
+
+        menuClienteCiudad.setText("Buscar Clientes por Ciudad");
+        jMenu2.add(menuClienteCiudad);
+
+        menuTelefonoApellido.setText("Buscar Teléfono por Apellido");
+        jMenu2.add(menuTelefonoApellido);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu5.setText("Ciudades");
+
+        menuCiudad.setText("Agregar Ciudad");
+        jMenu5.add(menuCiudad);
+
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Salir");
+        jMenuBar1.add(jMenu6);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -78,5 +144,19 @@ public class TrabajoPractico5 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem menuAgregarCliente;
+    private javax.swing.JMenuItem menuBuscarCliente;
+    private javax.swing.JMenu menuCiudad;
+    private javax.swing.JMenu menuClient;
+    private javax.swing.JMenuItem menuClienteCiudad;
+    private javax.swing.JMenuItem menuTelefonoApellido;
     // End of variables declaration//GEN-END:variables
 }
