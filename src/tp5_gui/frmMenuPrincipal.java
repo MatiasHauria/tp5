@@ -4,17 +4,18 @@
  */
 package tp5_gui;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Juan
  */
 public class frmMenuPrincipal extends javax.swing.JFrame {
-
-    /**
-     * Creates new form frmMenuPrincipal
-     */
+    public static ArrayList <String> listaCiudades = new ArrayList();
+    public static Directorio directorio = new Directorio();
     public frmMenuPrincipal() {
         initComponents();
+        
     }
 
     /**
@@ -177,6 +178,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 new frmMenuPrincipal().setVisible(true);
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

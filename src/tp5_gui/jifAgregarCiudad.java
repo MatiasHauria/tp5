@@ -4,6 +4,8 @@
  */
 package tp5_gui;
 
+import javax.swing.JOptionPane;
+import static tp5_gui.frmMenuPrincipal.listaCiudades;
 /**
  *
  * @author Juan
@@ -46,6 +48,11 @@ public class jifAgregarCiudad extends javax.swing.JInternalFrame {
         jlNomCiu.setText("Nombre de la Ciudad");
 
         jbAgregar.setText("Agregar");
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +119,19 @@ public class jifAgregarCiudad extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        String regex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$";
+        String ciudadAux;
+        if (!jtfNomCiu.getText().matches(regex) || jtfNomCiu.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error. Debe Introducir el Nombre de Una Ciudad.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ciudad añadida con exito!!");
+        }
+        ciudadAux = jtfNomCiu.getText();
+        listaCiudades.add(ciudadAux);
+        
+    }//GEN-LAST:event_jbAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

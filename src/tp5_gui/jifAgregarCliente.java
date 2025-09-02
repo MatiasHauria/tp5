@@ -4,10 +4,10 @@
  */
 package tp5_gui;
 
-/**
- *
- * @author Juan
- */
+import javax.swing.JOptionPane;
+import static tp5_gui.frmMenuPrincipal.directorio;
+import static tp5_gui.frmMenuPrincipal.listaCiudades;
+
 public class jifAgregarCliente extends javax.swing.JInternalFrame {
 
     /**
@@ -15,6 +15,14 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
      */
     public jifAgregarCliente() {
         initComponents();
+        
+        if (listaCiudades != null) {
+            for (String ciudadAux : listaCiudades) {
+                jcbCiudad.addItem(ciudadAux);
+            }
+        }
+        
+        
     }
 
     /**
@@ -69,8 +77,6 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        jcbCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -84,14 +90,13 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
                     .addComponent(jlDomicilio)
                     .addComponent(jlCiudad))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcbCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jtfDNI)
-                        .addComponent(jtfNombre)
-                        .addComponent(jtfApellido)
-                        .addComponent(jtfDomicilio, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtfDNI)
+                    .addComponent(jtfNombre)
+                    .addComponent(jtfApellido)
+                    .addComponent(jtfDomicilio, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                    .addComponent(jcbCiudad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,6 +154,11 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
         );
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -162,15 +172,11 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
@@ -228,6 +234,39 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        String regex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$";
+        
+        if (jtfDNI.getText().isEmpty() || jtfNombre.getText().isEmpty() || jtfApellido.getText().isEmpty() 
+                || jtfDomicilio.getText().isEmpty() || jtfNumero.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error. Tiene que ingresar todos los datos correspondientes.");
+        }
+        if (jtfDNI.getText().matches(regex) || !jtfNombre.getText().matches(regex) || !jtfApellido.getText().matches(regex) ||
+                jtfNumero.getText().matches(regex)) {
+            JOptionPane.showMessageDialog(this, "Los datos ingresados son invalidos, por favor ingrese los datos correspondientes...");
+        } else {
+            JOptionPane.showMessageDialog(this, "Cliente Añadido al Directorio.");
+        }
+        
+        Integer dniAux = Integer.parseInt(jtfDNI.getText());
+        String nombreAux = jtfNombre.getText();
+        String apellidoAux = jtfApellido.getText();
+        String domicilioAux = jtfDomicilio.getText();
+        long numeroAux = Long.parseLong(jtfNumero.getText());
+        String ciudadAux = jcbCiudad.getSelectedItem().toString();
+        
+        Contacto contactoAux = new Contacto(dniAux, nombreAux , apellidoAux , ciudadAux , domicilioAux);
+        directorio.agregarContacto(numeroAux, contactoAux );
+        
+        jtfDNI.setText(null);
+        jtfNombre.setText(null);
+        jtfApellido.setText(null);
+        jtfDomicilio.setText(null);
+        jtfNumero.setText(null);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
