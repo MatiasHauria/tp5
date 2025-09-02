@@ -40,17 +40,16 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jmiAgregarCiudad = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(null);
 
         javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
         jdpEscritorio.setLayout(jdpEscritorioLayout);
         jdpEscritorioLayout.setHorizontalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 743, Short.MAX_VALUE)
+            .addGap(0, 897, Short.MAX_VALUE)
         );
         jdpEscritorioLayout.setVerticalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGap(0, 641, Short.MAX_VALUE)
         );
 
         jmClientes.setText("Clientes");
@@ -87,6 +86,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jmDirectorio.add(jMenuItem4);
 
         jMenuItem5.setText("Buscar Telefono por Apellido");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jmDirectorio.add(jMenuItem5);
 
         jmbBarraMenu.add(jmDirectorio);
@@ -109,11 +113,16 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jdpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jdpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,7 +142,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiAgregarCiudadActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        jifBuscarClienteCiudad aCiu = new jifBuscarClienteCiudad();
+        aCiu.setVisible(true);
+        jdpEscritorio.add(aCiu);
+        aCiu.toFront();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jmiAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarClienteActionPerformed
@@ -144,6 +158,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jdpEscritorio.add(ac);
         ac.toFront();
     }//GEN-LAST:event_jmiAgregarClienteActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        jifBuscarTelefonoApellido ac = new jifBuscarTelefonoApellido();
+        ac.setVisible(true);
+        jdpEscritorio.add(ac);
+        ac.toFront();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments

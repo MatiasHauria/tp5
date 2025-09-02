@@ -4,17 +4,33 @@
  */
 package tp5_gui;
 
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+import static tp5_gui.frmMenuPrincipal.directorio;
+
 /**
  *
  * @author Admin
  */
 public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
-
+private DefaultTableModel modelo= new DefaultTableModel();
+private DefaultListModel<String> modelolista;
     /**
      * Creates new form jifBuscarTelefonoApellido
      */
     public jifBuscarTelefonoApellido() {
         initComponents();
+        modelolista=new DefaultListModel<>();
+        jList1.setModel(modelolista);
+        
+        for (Contacto aux : directorio.lista.values()) {
+            String auxiliar=(String)aux.getApellido();
+            modelolista.addElement(auxiliar);
+            
+        }
+        
+      armarCabecera();  
+      armarFilas();
     }
 
     /**
@@ -54,6 +70,11 @@ public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +121,10 @@ public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -110,4 +135,40 @@ public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+private void armarCabecera(){
+    modelo.addColumn("dni");
+    modelo.addColumn("apellido");
+    modelo.addColumn("nombre");
+    modelo.addColumn("direccion");
+    modelo.addColumn("ciudad");
+    modelo.addColumn("telefono");
+    jTable1.setModel(modelo);
+}
+private void armarFilas(){
+    
+    String apellidoSeleccionada=(String) jList1.getSelectedValue();
+    for (Contacto contacto : directorio.lista.values()) {
+    if (contacto.getApellido().equals(apellidoSeleccionada)) {
+          Object[] fila = {
+          contacto.getDNI(), 
+          contacto.getApellido(), 
+          contacto.getNombre(), 
+          contacto.getDireccion(), 
+          contacto.getCiudad(),
+          directorio.lista.firstKey()
+          };
+          modelo.addRow(fila);
+    
+}
+
+
+    }
+    }
+/*
+private void inicializarLista(){
+    modelolista=new DefaultListModel<>();
+    jList1=new <>(modelolista);
+    }
+*/
+
 }

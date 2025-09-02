@@ -15,7 +15,7 @@ import java.util.TreeMap;
  */
 public class Directorio {
 
-    TreeMap<Long, Contacto> lista = new TreeMap<>();
+     public TreeMap<Long, Contacto> lista = new TreeMap<>();
 
     public Directorio() {
     }

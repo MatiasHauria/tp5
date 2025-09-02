@@ -4,17 +4,30 @@
  */
 package tp5_gui;
 
+import javax.swing.table.DefaultTableModel;
+import static tp5_gui.frmMenuPrincipal.directorio;
+import static tp5_gui.frmMenuPrincipal.listaCiudades;
+
 /**
  *
  * @author Admin
  */
 public class jifBuscarClienteCiudad extends javax.swing.JInternalFrame {
-
+private DefaultTableModel modelo= new DefaultTableModel();
     /**
      * Creates new form jifBuscarClienteCiudad
      */
     public jifBuscarClienteCiudad() {
         initComponents();
+        if(listaCiudades!=null){
+            for (String aux : listaCiudades) {
+                jComboBox1.addItem(aux);
+            }
+        }
+      armarCabecera();  
+      armarFilas();
+      
+        
     }
 
     /**
@@ -55,8 +68,19 @@ public class jifBuscarClienteCiudad extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,6 +125,10 @@ public class jifBuscarClienteCiudad extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -110,4 +138,33 @@ public class jifBuscarClienteCiudad extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+private void armarCabecera(){
+    modelo.addColumn("dni");
+    modelo.addColumn("apellido");
+    modelo.addColumn("nombre");
+    modelo.addColumn("direccion");
+    modelo.addColumn("ciudad");
+    modelo.addColumn("telefono");
+    jTable1.setModel(modelo);
+}
+private void armarFilas(){
+    
+    String ciudadSeleccionada=(String) jComboBox1.getSelectedItem();
+    for (Contacto contacto : directorio.lista.values()) {
+    if (contacto.getCiudad().equals(ciudadSeleccionada)) {
+          Object[] fila = {
+          contacto.getDNI(), 
+          contacto.getApellido(), 
+          contacto.getNombre(), 
+          contacto.getDireccion(), 
+          contacto.getCiudad(),
+          directorio.lista.firstKey()
+          };
+          modelo.addRow(fila);
+    
+}
+
+
+    }
+    }
 }
