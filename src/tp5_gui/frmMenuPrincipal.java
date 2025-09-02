@@ -1,17 +1,17 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package tp5_gui;
 
 /**
  *
- * @author matute
+ * @author Juan
  */
-public class frmMenuPrincipal extends javax.swing.JPanel {
+public class frmMenuPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form main
+     * Creates new form frmMenuPrincipal
      */
     public frmMenuPrincipal() {
         initComponents();
@@ -26,19 +26,169 @@ public class frmMenuPrincipal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        jdpEscritorio = new javax.swing.JDesktopPane();
+        jmbBarraMenu = new javax.swing.JMenuBar();
+        jmClientes = new javax.swing.JMenu();
+        jmiAgregarCliente = new javax.swing.JMenuItem();
+        jmiBuscarCliente = new javax.swing.JMenuItem();
+        jmiBorrarCliente = new javax.swing.JMenuItem();
+        jmDirectorio = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jmCiudades = new javax.swing.JMenu();
+        jmiAgregarCiudad = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 450));
+
+        javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
+        jdpEscritorio.setLayout(jdpEscritorioLayout);
+        jdpEscritorioLayout.setHorizontalGroup(
+            jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 701, Short.MAX_VALUE)
+        );
+        jdpEscritorioLayout.setVerticalGroup(
+            jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 426, Short.MAX_VALUE)
+        );
+
+        jmClientes.setText("Clientes");
+
+        jmiAgregarCliente.setText("Agregar Cliente");
+        jmiAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarClienteActionPerformed(evt);
+            }
+        });
+        jmClientes.add(jmiAgregarCliente);
+
+        jmiBuscarCliente.setText("Buscar Cliente");
+        jmiBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiBuscarClienteActionPerformed(evt);
+            }
+        });
+        jmClientes.add(jmiBuscarCliente);
+
+        jmiBorrarCliente.setText("Borrar Cliente");
+        jmClientes.add(jmiBorrarCliente);
+
+        jmbBarraMenu.add(jmClientes);
+
+        jmDirectorio.setText("Directorio");
+
+        jMenuItem4.setText("Buscar Cientes por Ciudad");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jmDirectorio.add(jMenuItem4);
+
+        jMenuItem5.setText("Buscar Telefono por Apellido");
+        jmDirectorio.add(jMenuItem5);
+
+        jmbBarraMenu.add(jmDirectorio);
+
+        jmCiudades.setText("Ciudades");
+
+        jmiAgregarCiudad.setText("Agregar Ciudad");
+        jmiAgregarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarCiudadActionPerformed(evt);
+            }
+        });
+        jmCiudades.add(jmiAgregarCiudad);
+
+        jmbBarraMenu.add(jmCiudades);
+
+        setJMenuBar(jmbBarraMenu);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jdpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jdpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jmiBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiBuscarClienteActionPerformed
+
+    private void jmiAgregarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiAgregarCiudadActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jmiAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarClienteActionPerformed
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        jifAgregarCliente ac = new jifAgregarCliente();
+        ac.setVisible(true);
+        jdpEscritorio.add(ac);
+        ac.toFront();
+    }//GEN-LAST:event_jmiAgregarClienteActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new frmMenuPrincipal().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JDesktopPane jdpEscritorio;
+    private javax.swing.JMenu jmCiudades;
+    private javax.swing.JMenu jmClientes;
+    private javax.swing.JMenu jmDirectorio;
+    private javax.swing.JMenuBar jmbBarraMenu;
+    private javax.swing.JMenuItem jmiAgregarCiudad;
+    private javax.swing.JMenuItem jmiAgregarCliente;
+    private javax.swing.JMenuItem jmiBorrarCliente;
+    private javax.swing.JMenuItem jmiBuscarCliente;
     // End of variables declaration//GEN-END:variables
 }
