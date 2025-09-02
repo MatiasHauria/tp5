@@ -5,6 +5,8 @@
 package tp5_gui;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -41,20 +43,24 @@ public class Directorio {
         return null;
     }
 
-    public Contacto buscarContactos(String ciudad) {
-        for (Contacto contactos : lista.values()) {
-            ArrayList<Contacto> listafinal = new ArrayList<>();
-            listafinal.add(contactos);
-            for(Contacto aux: listafinal){
-                if(aux.getCiudad().equalsIgnoreCase(ciudad))
-                    return aux;
+    public ArrayList<Contacto> buscarContactos(String ciudad) {
+        ArrayList<Contacto> listafinal = new ArrayList<>();
+        for (Contacto aux : lista.values()) {
+            if (aux.getCiudad().equalsIgnoreCase(ciudad)) {
+                listafinal.add(aux);
             }
         }
-        return null;
+        return listafinal;
     }
-    public void borrarContacto(Long nroTelefono){
-        if(lista.containsKey(nroTelefono)){
-            lista.remove(nroTelefono);
+
+    public void borrarContacto(Long nroTelefono) {
+        Iterator<Map.Entry<Long, Contacto>> it = lista.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Long, Contacto> entry = it.next();
+            if (entry.getKey().equals(nroTelefono)){
+                it.remove();
+                return;
+            }
         }
     }
 }
