@@ -15,14 +15,13 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
      */
     public jifAgregarCliente() {
         initComponents();
-        
+
         if (listaCiudades != null) {
             for (String ciudadAux : listaCiudades) {
                 jcbCiudad.addItem(ciudadAux);
             }
         }
-        
-        
+
     }
 
     /**
@@ -236,36 +235,37 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         String regex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$";
-        
-        if (jtfDNI.getText().isEmpty() || jtfNombre.getText().isEmpty() || jtfApellido.getText().isEmpty() 
+
+        if (jtfDNI.getText().isEmpty() || jtfNombre.getText().isEmpty() || jtfApellido.getText().isEmpty()
                 || jtfDomicilio.getText().isEmpty() || jtfNumero.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error. Tiene que ingresar todos los datos correspondientes.");
         }
-        if (jtfDNI.getText().matches(regex) || !jtfNombre.getText().matches(regex) || !jtfApellido.getText().matches(regex) ||
-                jtfNumero.getText().matches(regex)) {
+        if (!jtfNombre.getText().matches(regex) || !jtfApellido.getText().matches(regex)) {
             JOptionPane.showMessageDialog(this, "Los datos ingresados son invalidos, por favor ingrese los datos correspondientes...");
         } else {
+            try {
+                Integer dniAux = Integer.parseInt(jtfDNI.getText());
+                String nombreAux = jtfNombre.getText();
+                String apellidoAux = jtfApellido.getText();
+                String domicilioAux = jtfDomicilio.getText();
+                long numeroAux = Long.parseLong(jtfNumero.getText());
+                String ciudadAux = jcbCiudad.getSelectedItem().toString();
+
+                Contacto contactoAux = new Contacto(dniAux, nombreAux, apellidoAux, ciudadAux, domicilioAux);
+                directorio.agregarContacto(numeroAux, contactoAux);
+
+                jtfDNI.setText(null);
+                jtfNombre.setText(null);
+                jtfApellido.setText(null);
+                jtfDomicilio.setText(null);
+                jtfNumero.setText(null);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Dni o Domicilio mal agregado.");
+            }
             JOptionPane.showMessageDialog(this, "Cliente Añadido al Directorio.");
         }
-        
-        Integer dniAux = Integer.parseInt(jtfDNI.getText());
-        String nombreAux = jtfNombre.getText();
-        String apellidoAux = jtfApellido.getText();
-        String domicilioAux = jtfDomicilio.getText();
-        long numeroAux = Long.parseLong(jtfNumero.getText());
-        String ciudadAux = jcbCiudad.getSelectedItem().toString();
-        
-        Contacto contactoAux = new Contacto(dniAux, nombreAux , apellidoAux , ciudadAux , domicilioAux);
-        directorio.agregarContacto(numeroAux, contactoAux );
-        
-        jtfDNI.setText(null);
-        jtfNombre.setText(null);
-        jtfApellido.setText(null);
-        jtfDomicilio.setText(null);
-        jtfNumero.setText(null);
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

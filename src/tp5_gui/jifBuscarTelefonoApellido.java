@@ -4,6 +4,7 @@
  */
 package tp5_gui;
 
+import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -16,17 +17,17 @@ import static tp5_gui.frmMenuPrincipal.directorio;
  */
 public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modelo = new DefaultTableModel(){
-    @Override    
-    public boolean isCellEditable(int row ,int column){
-        
-        return false;
-    }
-        
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+
+            return false;
+        }
+
     };
-    
+
     private DefaultListModel<String> modelolista;
-    
+
     /**
      * Creates new form jifBuscarTelefonoApellido
      */
@@ -34,7 +35,7 @@ public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
         initComponents();
         modelolista = new DefaultListModel<>();
         jList1.setModel(modelolista);
-        
+
         for (Contacto aux : directorio.lista.values()) {
             String auxiliar = (String) aux.getApellido();
             modelolista.addElement(auxiliar);
@@ -168,9 +169,13 @@ private void armarCabecera() {
     }
 
     private void armarFilas() {
-
         modelo.setRowCount(0);
-        for (Contacto contacto : directorio.lista.values()) {
+
+        // Itera sobre las entradas del mapa para obtener tanto la clave (teléfono) como el valor (Contacto).
+        for (Map.Entry<Long, Contacto> entry : directorio.lista.entrySet()) {
+            Long telefono = entry.getKey();
+            Contacto contacto = entry.getValue();
+
             if (contacto.getApellido().equals(jList1.getSelectedValue())) {
                 Object[] fila = {
                     contacto.getDNI(),
@@ -178,14 +183,11 @@ private void armarCabecera() {
                     contacto.getNombre(),
                     contacto.getDireccion(),
                     contacto.getCiudad(),
-                    directorio.lista.firstKey()
+                    telefono 
                 };
                 modelo.addRow(fila);
-
             }
-
         }
     }
- 
 
 }
