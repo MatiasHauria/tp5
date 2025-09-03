@@ -25,7 +25,6 @@ private DefaultTableModel modelo= new DefaultTableModel();
             }
         }
       armarCabecera();  
-      armarFilas();
       
         
     }
@@ -122,7 +121,7 @@ private DefaultTableModel modelo= new DefaultTableModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        armarFilas();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -148,7 +147,7 @@ private void armarCabecera(){
     jTable1.setModel(modelo);
 }
 private void armarFilas(){
-    
+    modelo.setRowCount(0);
     String ciudadSeleccionada=(String) jComboBox1.getSelectedItem();
     for (Contacto contacto : directorio.lista.values()) {
     if (contacto.getCiudad().equals(ciudadSeleccionada)) {

@@ -5,6 +5,8 @@
 package tp5_gui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static tp5_gui.frmMenuPrincipal.directorio;
 
@@ -13,24 +15,35 @@ import static tp5_gui.frmMenuPrincipal.directorio;
  * @author Admin
  */
 public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo= new DefaultTableModel();
-private DefaultListModel<String> modelolista;
+
+    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultListModel<String> modelolista;
+
     /**
      * Creates new form jifBuscarTelefonoApellido
      */
     public jifBuscarTelefonoApellido() {
         initComponents();
-        modelolista=new DefaultListModel<>();
+        modelolista = new DefaultListModel<>();
         jList1.setModel(modelolista);
-        
+
         for (Contacto aux : directorio.lista.values()) {
-            String auxiliar=(String)aux.getApellido();
+            String auxiliar = (String) aux.getApellido();
             modelolista.addElement(auxiliar);
-            
+
         }
-        
-      armarCabecera();  
-      armarFilas();
+
+        armarCabecera();
+
+        jList1.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent tocaritem) {
+                // Asegúrate de que el evento no se active mientras se ajusta la selección
+                if (!tocaritem.getValueIsAdjusting()) {
+                    armarFilas();
+                }
+            }
+        });
     }
 
     /**
@@ -52,6 +65,7 @@ private DefaultListModel<String> modelolista;
 
         jLabel1.setText("Apellido");
 
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
         jLabel2.setText("Buscar Telefono por Apellido");
@@ -135,40 +149,40 @@ private DefaultListModel<String> modelolista;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-private void armarCabecera(){
-    modelo.addColumn("dni");
-    modelo.addColumn("apellido");
-    modelo.addColumn("nombre");
-    modelo.addColumn("direccion");
-    modelo.addColumn("ciudad");
-    modelo.addColumn("telefono");
-    jTable1.setModel(modelo);
-}
-private void armarFilas(){
-    
-    String apellidoSeleccionada=(String) jList1.getSelectedValue();
-    for (Contacto contacto : directorio.lista.values()) {
-    if (contacto.getApellido().equals(apellidoSeleccionada)) {
-          Object[] fila = {
-          contacto.getDNI(), 
-          contacto.getApellido(), 
-          contacto.getNombre(), 
-          contacto.getDireccion(), 
-          contacto.getCiudad(),
-          directorio.lista.firstKey()
-          };
-          modelo.addRow(fila);
-    
-}
-
-
+private void armarCabecera() {
+        modelo.addColumn("dni");
+        modelo.addColumn("apellido");
+        modelo.addColumn("nombre");
+        modelo.addColumn("direccion");
+        modelo.addColumn("ciudad");
+        modelo.addColumn("telefono");
+        jTable1.setModel(modelo);
     }
+
+    private void armarFilas() {
+
+        modelo.setRowCount(0);
+        for (Contacto contacto : directorio.lista.values()) {
+            if (contacto.getApellido().equals(jList1.getSelectedValue())) {
+                Object[] fila = {
+                    contacto.getDNI(),
+                    contacto.getApellido(),
+                    contacto.getNombre(),
+                    contacto.getDireccion(),
+                    contacto.getCiudad(),
+                    directorio.lista.firstKey()
+                };
+                modelo.addRow(fila);
+
+            }
+
+        }
     }
-/*
+    /*
 private void inicializarLista(){
     modelolista=new DefaultListModel<>();
     jList1=new <>(modelolista);
     }
-*/
+     */
 
 }
