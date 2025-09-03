@@ -4,6 +4,7 @@
  */
 package tp5_gui;
 
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 import static tp5_gui.frmMenuPrincipal.directorio;
 import static tp5_gui.frmMenuPrincipal.listaCiudades;
@@ -13,27 +14,28 @@ import static tp5_gui.frmMenuPrincipal.listaCiudades;
  * @author Admin
  */
 public class jifBuscarClienteCiudad extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo = new DefaultTableModel(){
-    @Override    
-    public boolean isCellEditable(int row ,int column){
-        
-        return false;
-    }
-        
+
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+
+            return false;
+        }
+
     };
+
     /**
      * Creates new form jifBuscarClienteCiudad
      */
     public jifBuscarClienteCiudad() {
         initComponents();
-        if(listaCiudades!=null){
+        if (listaCiudades != null) {
             for (String aux : listaCiudades) {
                 jComboBox1.addItem(aux);
             }
         }
-      armarCabecera();  
-      
-        
+        armarCabecera();
+
     }
 
     /**
@@ -144,33 +146,37 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-private void armarCabecera(){
-    modelo.addColumn("dni");
-    modelo.addColumn("apellido");
-    modelo.addColumn("nombre");
-    modelo.addColumn("direccion");
-    modelo.addColumn("ciudad");
-    modelo.addColumn("telefono");
-    jTable1.setModel(modelo);
-}
-private void armarFilas(){
-    modelo.setRowCount(0);
-    String ciudadSeleccionada=(String) jComboBox1.getSelectedItem();
-    for (Contacto contacto : directorio.lista.values()) {
-    if (contacto.getCiudad().equals(ciudadSeleccionada)) {
-          Object[] fila = {
-          contacto.getDNI(), 
-          contacto.getApellido(), 
-          contacto.getNombre(), 
-          contacto.getDireccion(), 
-          contacto.getCiudad(),
-          directorio.lista.firstKey()
-          };
-          modelo.addRow(fila);
-    
-}
-
-
+private void armarCabecera() {
+        modelo.addColumn("dni");
+        modelo.addColumn("apellido");
+        modelo.addColumn("nombre");
+        modelo.addColumn("direccion");
+        modelo.addColumn("ciudad");
+        modelo.addColumn("telefono");
+        jTable1.setModel(modelo);
     }
-    }
+
+    private void armarFilas() {
+        modelo.setRowCount(0);
+
+        for (Map.Entry<Long, Contacto> entry : directorio.lista.entrySet()) {
+            Long telefono = entry.getKey();
+            Contacto contacto = entry.getValue();
+
+            String ciudadSeleccionada = (String) jComboBox1.getSelectedItem();
+
+            if (contacto.getCiudad().equals(ciudadSeleccionada)) {
+                Object[] fila = {
+                    contacto.getDNI(),
+                    contacto.getApellido(),
+                    contacto.getNombre(),
+                    contacto.getDireccion(),
+                    contacto.getCiudad(),
+                    telefono
+                };
+                modelo.addRow(fila);
+
+            }
+        }
+}
 }

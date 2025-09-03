@@ -171,7 +171,7 @@ private void armarCabecera() {
     private void armarFilas() {
         modelo.setRowCount(0);
 
-        // Itera sobre las entradas del mapa para obtener tanto la clave (teléfono) como el valor (Contacto).
+        
         for (Map.Entry<Long, Contacto> entry : directorio.lista.entrySet()) {
             Long telefono = entry.getKey();
             Contacto contacto = entry.getValue();
