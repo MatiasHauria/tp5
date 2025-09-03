@@ -16,9 +16,17 @@ import static tp5_gui.frmMenuPrincipal.directorio;
  */
 public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel(){
+    @Override    
+    public boolean isCellEditable(int row ,int column){
+        
+        return false;
+    }
+        
+    };
+    
     private DefaultListModel<String> modelolista;
-
+    
     /**
      * Creates new form jifBuscarTelefonoApellido
      */
@@ -26,7 +34,7 @@ public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
         initComponents();
         modelolista = new DefaultListModel<>();
         jList1.setModel(modelolista);
-
+        
         for (Contacto aux : directorio.lista.values()) {
             String auxiliar = (String) aux.getApellido();
             modelolista.addElement(auxiliar);
@@ -178,11 +186,6 @@ private void armarCabecera() {
 
         }
     }
-    /*
-private void inicializarLista(){
-    modelolista=new DefaultListModel<>();
-    jList1=new <>(modelolista);
-    }
-     */
+ 
 
 }

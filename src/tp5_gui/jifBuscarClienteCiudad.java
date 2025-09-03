@@ -13,7 +13,14 @@ import static tp5_gui.frmMenuPrincipal.listaCiudades;
  * @author Admin
  */
 public class jifBuscarClienteCiudad extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo= new DefaultTableModel();
+private DefaultTableModel modelo = new DefaultTableModel(){
+    @Override    
+    public boolean isCellEditable(int row ,int column){
+        
+        return false;
+    }
+        
+    };
     /**
      * Creates new form jifBuscarClienteCiudad
      */
