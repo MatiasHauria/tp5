@@ -51,6 +51,7 @@ public class jifBuscarTelefonoApellido extends javax.swing.JInternalFrame {
                 if (!tocaritem.getValueIsAdjusting()) {
                     armarFilas();
                 }
+                jTextField1.setText(jList1.getSelectedValue().toString());
             }
         });
     }
