@@ -33,15 +33,11 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
             modeloLista.addElement(dniAuxiliar);
         }
         head();
-        jListaDNI.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent clickItem) {
-                if (!clickItem.getValueIsAdjusting()) {
-                    rows();
-                }
+        jListaDNI.addListSelectionListener((ListSelectionEvent clickItem) -> {
+            if (!clickItem.getValueIsAdjusting()) {
+                rows();
             }
         });
-
     }
 
     /**
