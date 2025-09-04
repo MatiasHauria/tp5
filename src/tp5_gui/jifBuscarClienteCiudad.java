@@ -4,7 +4,9 @@
  */
 package tp5_gui;
 
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 import javax.swing.table.DefaultTableModel;
 import static tp5_gui.frmMenuPrincipal.directorio;
 import static tp5_gui.frmMenuPrincipal.listaCiudades;
@@ -158,14 +160,18 @@ private void armarCabecera() {
 
     private void armarFilas() {
         modelo.setRowCount(0);
-
-        for (Map.Entry<Long, Contacto> entry : directorio.lista.entrySet()) {
-            Long telefono = entry.getKey();
-            Contacto contacto = entry.getValue();
-
-            String ciudadSeleccionada = (String) jComboBox1.getSelectedItem();
-
-            if (contacto.getCiudad().equals(ciudadSeleccionada)) {
+        String ciudadSeleccionada = (String) jComboBox1.getSelectedItem();
+        if (ciudadSeleccionada != null) {
+            ArrayList<Contacto> contactosEncontrados = directorio.buscarContactos(ciudadSeleccionada);
+            TreeMap<Long, Contacto> directorioCompleto = directorio.lista;
+            for (Contacto contacto : contactosEncontrados) {
+                Long telefono = null;
+                for (Map.Entry<Long, Contacto> aux : directorioCompleto.entrySet()) {
+                    if (aux.getValue().equals(contacto)) {
+                        telefono = aux.getKey();
+                        break;
+                    }
+                }
                 Object[] fila = {
                     contacto.getDNI(),
                     contacto.getApellido(),
@@ -175,8 +181,7 @@ private void armarCabecera() {
                     telefono
                 };
                 modelo.addRow(fila);
-
             }
         }
-}
+    }
 }
