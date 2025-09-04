@@ -71,6 +71,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jmClientes.add(jmiBuscarCliente);
 
         jmiBorrarCliente.setText("Borrar Cliente");
+        jmiBorrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiBorrarClienteActionPerformed(evt);
+            }
+        });
         jmClientes.add(jmiBorrarCliente);
 
         jmbBarraMenu.add(jmClientes);
@@ -171,6 +176,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jdpEscritorio.add(ac);
         ac.toFront();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jmiBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBorrarClienteActionPerformed
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        jifBorrarCliente bc = new jifBorrarCliente();
+        bc.setVisible(true);
+        jdpEscritorio.add(bc);
+        bc.toFront();
+    }//GEN-LAST:event_jmiBorrarClienteActionPerformed
 
     /**
      * @param args the command line arguments
