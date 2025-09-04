@@ -129,8 +129,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBuscarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmiBuscarClienteActionPerformed
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        jifBuscarCliente bc = new jifBuscarCliente();
+        bc.setVisible(true);
+        jdpEscritorio.add(bc);
+        bc.toFront();    }//GEN-LAST:event_jmiBuscarClienteActionPerformed
 
     private void jmiAgregarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarCiudadActionPerformed
         jdpEscritorio.removeAll();
