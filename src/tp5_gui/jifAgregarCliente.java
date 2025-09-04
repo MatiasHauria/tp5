@@ -255,7 +255,8 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
 
                 Contacto contactoAux = new Contacto(dniAux, nombreAux, apellidoAux, ciudadAux, domicilioAux);
                 directorio.agregarContacto(numeroAux, contactoAux);
-
+                JOptionPane.showMessageDialog(this, "Cliente Añadido al Directorio.");
+                
                 jtfDNI.setText(null);
                 jtfNombre.setText(null);
                 jtfApellido.setText(null);
@@ -264,7 +265,7 @@ public class jifAgregarCliente extends javax.swing.JInternalFrame {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Dni o Domicilio mal agregado.");
             }
-            JOptionPane.showMessageDialog(this, "Cliente Añadido al Directorio.");
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
