@@ -36,6 +36,7 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
         jListaDNI.addListSelectionListener((ListSelectionEvent clickItem) -> {
             if (!clickItem.getValueIsAdjusting()) {
                 rows();
+                
             }
         });
     }
@@ -55,6 +56,7 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTabla = new javax.swing.JTable();
         jButtonBorrarCliente = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         jLabel1.setText("Borrar Cliente");
@@ -92,6 +94,14 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextField1.setEditable(false);
+        jTextField1.setToolTipText("");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,8 +121,11 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31))
         );
@@ -124,7 +137,9 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,7 +147,7 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButtonBorrarCliente))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,12 +175,17 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
             directorio.lista.remove(telefonoEliminar);
             modeloLista.removeElement(dniAuxiliar);
             modeloTabla.setRowCount(0);
+            jTextField1.setText("");
             JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
             
         } catch (IllegalArgumentException il) {
             JOptionPane.showMessageDialog(this, "Error: " + il.getMessage());
         }
     }//GEN-LAST:event_jButtonBorrarClienteActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -177,6 +197,7 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTabla;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     private void head() {
         modeloTabla.addColumn("DNI");
@@ -195,6 +216,7 @@ public class jifBorrarCliente extends javax.swing.JInternalFrame {
             Contacto contacto = entry.getValue();
             String dniAuxiliar = String.valueOf(contacto.getDNI());
             if (dniAuxiliar.equals(jListaDNI.getSelectedValue())) {
+                jTextField1.setText(jListaDNI.getSelectedValue());
                 Object[] row = {
                     contacto.getDNI(), contacto.getApellido(), contacto.getNombre(), contacto.getCiudad(), contacto.getDireccion(), telefono
                 };
